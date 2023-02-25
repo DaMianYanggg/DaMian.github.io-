@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2023/2 | Hexo</title>
+  <title>unity坐标系篇 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2023/02/index.html">
+  <meta name="description" content="一、坐标系1 世界坐标系-transform.position比较好理解，就是整个游戏的坐标系，只有一个。 2 局部坐标系-transform.localposition每个物体都有自身的局部坐标系，物体的transform组件中的xyz表示的是其自身在其父物体坐标系的位置，若没有设置父物体，则为世界坐标系。 3 屏幕坐标系横纵坐标的单位是像素。  4 视口坐标系视口坐标系就是将屏幕坐标系的横纵坐">
+<meta property="og:type" content="article">
+<meta property="og:title" content="unity坐标系篇">
+<meta property="og:url" content="http://example.com/2023/02/25/unity%E5%9D%90%E6%A0%87%E7%B3%BB%E7%AF%87/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、坐标系1 世界坐标系-transform.position比较好理解，就是整个游戏的坐标系，只有一个。 2 局部坐标系-transform.localposition每个物体都有自身的局部坐标系，物体的transform组件中的xyz表示的是其自身在其父物体坐标系的位置，若没有设置父物体，则为世界坐标系。 3 屏幕坐标系横纵坐标的单位是像素。  4 视口坐标系视口坐标系就是将屏幕坐标系的横纵坐">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2023/02/25/unity%E5%9D%90%E6%A0%87%E7%B3%BB%E7%AF%87/3.png">
+<meta property="og:image" content="http://example.com/2023/02/25/unity%E5%9D%90%E6%A0%87%E7%B3%BB%E7%AF%87/4.png">
+<meta property="og:image" content="http://example.com/2023/02/25/unity%E5%9D%90%E6%A0%87%E7%B3%BB%E7%AF%87/5.png">
+<meta property="article:published_time" content="2023-02-25T02:09:01.000Z">
+<meta property="article:modified_time" content="2023-02-25T04:39:46.654Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/02/25/unity%E5%9D%90%E6%A0%87%E7%B3%BB%E7%AF%87/3.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,130 +158,167 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-unity坐标系篇" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      unity坐标系篇
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/02/25/unity%E5%9D%90%E6%A0%87%E7%B3%BB%E7%AF%87/" class="archive-article-date">
+
+        
+        <a href="/2023/02/25/unity%E5%9D%90%E6%A0%87%E7%B3%BB%E7%AF%87/" class="archive-article-date">
   	<time datetime="2023-02-25T02:09:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-25</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/02/25/unity%E5%9D%90%E6%A0%87%E7%B3%BB%E7%AF%87/">unity坐标系篇</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、坐标系"><a href="#一、坐标系" class="headerlink" title="一、坐标系"></a>一、坐标系</h1><h2 id="1-世界坐标系-transform-position"><a href="#1-世界坐标系-transform-position" class="headerlink" title="1 世界坐标系-transform.position"></a>1 世界坐标系-transform.position</h2><p>比较好理解，就是整个游戏的坐标系，只有一个。</p>
+<h2 id="2-局部坐标系-transform-localposition"><a href="#2-局部坐标系-transform-localposition" class="headerlink" title="2 局部坐标系-transform.localposition"></a>2 局部坐标系-transform.localposition</h2><p>每个物体都有自身的局部坐标系，物体的transform组件中的xyz表示的是其自身在其父物体坐标系的位置，若没有设置父物体，则为世界坐标系。</p>
+<h2 id="3-屏幕坐标系"><a href="#3-屏幕坐标系" class="headerlink" title="3 屏幕坐标系"></a>3 屏幕坐标系</h2><p>横纵坐标的单位是像素。</p>
+<p><img src="/2023/02/25/unity%E5%9D%90%E6%A0%87%E7%B3%BB%E7%AF%87/3.png"></p>
+<h2 id="4-视口坐标系"><a href="#4-视口坐标系" class="headerlink" title="4 视口坐标系"></a>4 视口坐标系</h2><p>视口坐标系就是将屏幕坐标系的横纵坐标归一化。</p>
+<p><img src="/2023/02/25/unity%E5%9D%90%E6%A0%87%E7%B3%BB%E7%AF%87/4.png"></p>
+<h2 id="5-GUI坐标系"><a href="#5-GUI坐标系" class="headerlink" title="5 GUI坐标系"></a>5 GUI坐标系</h2><p>反向的屏幕坐标系。</p>
+<p><img src="/2023/02/25/unity%E5%9D%90%E6%A0%87%E7%B3%BB%E7%AF%87/5.png"></p>
+<h1 id="二、常见问题"><a href="#二、常见问题" class="headerlink" title="二、常见问题"></a>二、常见问题</h1><h2 id="将鼠标的屏幕坐标转化为世界坐标（让一个物体跟随鼠标移动）？"><a href="#将鼠标的屏幕坐标转化为世界坐标（让一个物体跟随鼠标移动）？" class="headerlink" title="将鼠标的屏幕坐标转化为世界坐标（让一个物体跟随鼠标移动）？"></a>将鼠标的屏幕坐标转化为世界坐标（让一个物体跟随鼠标移动）？</h2><p>屏幕坐标虽然是V3类型，但其z轴是0，若直接将其转化为世界坐标，会出问题。</p>
+<p>解决方法如下：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Vector3 targetScreenPos = Camera.main.WorldToScreenPoint(transform.position);<span class="comment">//将物体的世界坐标转化为屏幕坐标</span></span><br><span class="line">Vector3 mousePos = <span class="keyword">new</span> Vector3(Input.mousePosition.x, Input.mousePosition.y, targetScreenPos.z);<span class="comment">//将物体屏幕坐标对应的z轴值赋给鼠标的屏幕坐标z轴</span></span><br><span class="line">Vector3 mousePos_W = Camera.main.ScreenToWorldPoint(mousePos);<span class="comment">//将得到的鼠标屏幕坐标转化为世界坐标</span></span><br><span class="line">transform.position = Vector3 mousePos_W;<span class="comment">//物体跟随鼠标移动</span></span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
 
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2023/02/25/unity%E5%9D%90%E6%A0%87%E7%B3%BB%E7%AF%87/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/02/24/Game3/" class="archive-article-date">
-  	<time datetime="2023-02-24T04:50:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-24</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2023/02/24/Game3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Game3</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/02/24/Game3/">Game3</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/02/24/C-%E5%87%BD%E6%95%B0-GUI/" class="archive-article-date">
-  	<time datetime="2023-02-24T03:18:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/02/24/C-%E5%87%BD%E6%95%B0-GUI/">C#函数-GUI</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/02/24/Game2/" class="archive-article-date">
-  	<time datetime="2023-02-24T03:05:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/02/24/Game2/">RTS游戏初体验-Game2</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -296,8 +341,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

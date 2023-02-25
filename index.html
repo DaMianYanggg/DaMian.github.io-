@@ -152,6 +152,80 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-unity坐标系篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/02/25/unity%E5%9D%90%E6%A0%87%E7%B3%BB%E7%AF%87/">unity坐标系篇</a>
+    </h1>
+  
+
+        
+        <a href="/2023/02/25/unity%E5%9D%90%E6%A0%87%E7%B3%BB%E7%AF%87/" class="archive-article-date">
+  	<time datetime="2023-02-25T02:09:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、坐标系"><a href="#一、坐标系" class="headerlink" title="一、坐标系"></a>一、坐标系</h1><h2 id="1-世界坐标系-transform-position"><a href="#1-世界坐标系-transform-position" class="headerlink" title="1 世界坐标系-transform.position"></a>1 世界坐标系-transform.position</h2><p>比较好理解，就是整个游戏的坐标系，只有一个。</p>
+<h2 id="2-局部坐标系-transform-localposition"><a href="#2-局部坐标系-transform-localposition" class="headerlink" title="2 局部坐标系-transform.localposition"></a>2 局部坐标系-transform.localposition</h2><p>每个物体都有自身的局部坐标系，物体的transform组件中的xyz表示的是其自身在其父物体坐标系的位置，若没有设置父物体，则为世界坐标系。</p>
+<h2 id="3-屏幕坐标系"><a href="#3-屏幕坐标系" class="headerlink" title="3 屏幕坐标系"></a>3 屏幕坐标系</h2><p>横纵坐标的单位是像素。</p>
+<p><img src="/2023/02/25/unity%E5%9D%90%E6%A0%87%E7%B3%BB%E7%AF%87/3.png"></p>
+<h2 id="4-视口坐标系"><a href="#4-视口坐标系" class="headerlink" title="4 视口坐标系"></a>4 视口坐标系</h2><p>视口坐标系就是将屏幕坐标系的横纵坐标归一化。</p>
+<p><img src="/2023/02/25/unity%E5%9D%90%E6%A0%87%E7%B3%BB%E7%AF%87/4.png"></p>
+<h2 id="5-GUI坐标系"><a href="#5-GUI坐标系" class="headerlink" title="5 GUI坐标系"></a>5 GUI坐标系</h2><p>反向的屏幕坐标系。</p>
+<p><img src="/2023/02/25/unity%E5%9D%90%E6%A0%87%E7%B3%BB%E7%AF%87/5.png"></p>
+<h1 id="二、常见问题"><a href="#二、常见问题" class="headerlink" title="二、常见问题"></a>二、常见问题</h1><h2 id="将鼠标的屏幕坐标转化为世界坐标（让一个物体跟随鼠标移动）？"><a href="#将鼠标的屏幕坐标转化为世界坐标（让一个物体跟随鼠标移动）？" class="headerlink" title="将鼠标的屏幕坐标转化为世界坐标（让一个物体跟随鼠标移动）？"></a>将鼠标的屏幕坐标转化为世界坐标（让一个物体跟随鼠标移动）？</h2><p>屏幕坐标虽然是V3类型，但其z轴是0，若直接将其转化为世界坐标，会出问题。</p>
+<p>解决方法如下：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Vector3 targetScreenPos = Camera.main.WorldToScreenPoint(transform.position);<span class="comment">//将物体的世界坐标转化为屏幕坐标</span></span><br><span class="line">Vector3 mousePos = <span class="keyword">new</span> Vector3(Input.mousePosition.x, Input.mousePosition.y, targetScreenPos.z);<span class="comment">//将物体屏幕坐标对应的z轴值赋给鼠标的屏幕坐标z轴</span></span><br><span class="line">Vector3 mousePos_W = Camera.main.ScreenToWorldPoint(mousePos);<span class="comment">//将得到的鼠标屏幕坐标转化为世界坐标</span></span><br><span class="line">transform.position = Vector3 mousePos_W;<span class="comment">//物体跟随鼠标移动</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/02/25/unity%E5%9D%90%E6%A0%87%E7%B3%BB%E7%AF%87/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Game3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -245,8 +319,8 @@
 </ol>
 <h6 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GUI.Button(new Rect(10, 20, 110, 30), &quot;Create Tower 1&quot;);</span><br><span class="line">GUI.Button(new Rect(10, 55, 110, 30), &quot;Create Tower 2&quot;);</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2023/02/24/C-%E5%87%BD%E6%95%B0-GUI/1.png" alt="1"></p>
-<p>*注意：new Rect()前两个参数是button的左上角位置，后两个参数是button的大小   *</p>
+<p><img src="/2023/02/24/C-%E5%87%BD%E6%95%B0-GUI/1.png"></p>
+<p><em>注意：new Rect()前两个参数是button的左上角位置，后两个参数是button的大小</em></p>
 
       
 
