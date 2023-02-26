@@ -383,7 +383,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="功能介绍"><a href="#功能介绍" class="headerlink" title="功能介绍"></a>功能介绍</h1><p>左键点击按钮生成一个跟随鼠标移动的物体，按下鼠标左边，若该位置可放置建筑且未被阻挡，放置物体。</p>
+<h1 id="核心技术"><a href="#核心技术" class="headerlink" title="核心技术"></a>核心技术</h1><h3 id="GUI按钮"><a href="#GUI按钮" class="headerlink" title="GUI按钮"></a>GUI按钮</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GUI.Button(new Rect(10, 20, 110, 30), &quot;Create Tower 1&quot;);</span><br><span class="line">GUI.Button(new Rect(10, 55, 110, 30), &quot;Create Tower 2&quot;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="物体跟随鼠标移动"><a href="#物体跟随鼠标移动" class="headerlink" title="物体跟随鼠标移动"></a>物体跟随鼠标移动</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vector3 targetScreenPos = Camera.main.WorldToScreenPoint(transform.position);</span><br><span class="line">Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, targetScreenPos.z);</span><br><span class="line">transform.position = Camera.main.ScreenToWorldPoint(mousePos);</span><br></pre></td></tr></table></figure>
+
+<h1 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h1><p><img src="/2023/02/24/Game2/1.gif"></p>
+
       
 
       
