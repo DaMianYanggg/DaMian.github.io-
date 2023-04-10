@@ -152,6 +152,368 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-线程创建方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/03/31/%E7%BA%BF%E7%A8%8B%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F/">常用线程创建方式</a>
+    </h1>
+  
+
+        
+        <a href="/2023/03/31/%E7%BA%BF%E7%A8%8B%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2023-03-31T02:04:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-委托方式"><a href="#1-委托方式" class="headerlink" title="1 委托方式"></a>1 委托方式</h1><h3 id="1-1-不带参数"><a href="#1-1-不带参数" class="headerlink" title="1.1 不带参数"></a>1.1 不带参数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Program &#123;</span><br><span class="line">	static void Test()&#123;</span><br><span class="line">	...</span><br><span class="line">	&#125;</span><br><span class="line">	static void Main(string []args)&#123;</span><br><span class="line">	Action a = Test;</span><br><span class="line">	a.BeginInvoke(null, null);	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-带参数"><a href="#1-2-带参数" class="headerlink" title="1.2 带参数"></a>1.2 带参数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Program &#123;</span><br><span class="line">	static void Test(int x,string y)&#123;</span><br><span class="line">	...</span><br><span class="line">	&#125;</span><br><span class="line">	static void Main(string []args)&#123;</span><br><span class="line">	Action a&lt;int, string&gt; = Test;</span><br><span class="line">	a.BeginInvoke(100, &quot;Hi&quot;, null, null);	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="注：创建带返回值线程"><a href="#注：创建带返回值线程" class="headerlink" title="注：创建带返回值线程"></a>注：创建带返回值线程</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Program &#123;</span><br><span class="line">	static void Test(int x,string y)&#123;</span><br><span class="line">	...</span><br><span class="line">	&#125;</span><br><span class="line">	static void Main(string []args)&#123;</span><br><span class="line">	Func a&lt;int, string,int&gt; = Test;	//最后一个泛型参数是返回值类型</span><br><span class="line">	IAsyncResult ar = a.BeginInvoke(100, &quot;Hi&quot;, null, null);	//IAsyncResult可以获取线程状态</span><br><span class="line">	while(ar.IsCompleted == false)&#123;</span><br><span class="line">	Thread.Sleep(100);	//暂停当前线程 单位ms</span><br><span class="line">	&#125;</span><br><span class="line">	int res = a.EndInvoke(ar);//获取返回值</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="2-Thread类"><a href="#2-Thread类" class="headerlink" title="2 Thread类"></a>2 Thread类</h1><h3 id="2-1-不带参数"><a href="#2-1-不带参数" class="headerlink" title="2.1 不带参数"></a>2.1 不带参数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Program &#123;</span><br><span class="line">	static void Test()&#123;</span><br><span class="line">	...</span><br><span class="line">	&#125;</span><br><span class="line">	static void Main(string []args)&#123;</span><br><span class="line">	Thread t = new Thread(Test);</span><br><span class="line">	t.Start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-2-带参数"><a href="#2-2-带参数" class="headerlink" title="2.2 带参数"></a>2.2 带参数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Program &#123;</span><br><span class="line">	static void Test(int x,string y)&#123;</span><br><span class="line">	...</span><br><span class="line">	&#125;</span><br><span class="line">	static void Main(string []args)&#123;</span><br><span class="line">	Thread t = new Thread(Test);</span><br><span class="line">	t.Start(100，&quot;Hi&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-检测结束"><a href="#2-3-检测结束" class="headerlink" title="2.3 检测结束"></a>2.3 检测结束</h3><h4 id="2-3-1-通过IAsyncResult"><a href="#2-3-1-通过IAsyncResult" class="headerlink" title="2.3.1 通过IAsyncResult"></a>2.3.1 通过IAsyncResult</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Program &#123;</span><br><span class="line">	static void Test()&#123;</span><br><span class="line">	...</span><br><span class="line">	&#125;</span><br><span class="line">	static void Main(string []args)&#123;</span><br><span class="line">	Action a = Test;</span><br><span class="line">	IAsyncResult ar = a.BeginInvoke(null, null);</span><br><span class="line">    bool isEnd = ar.AsyncWaitHandle.WaitOne(1000);//若线程在1000ms内结束则返回ture</span><br><span class="line">    </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-2-通过回调函数-常用"><a href="#2-3-2-通过回调函数-常用" class="headerlink" title="2.3.2 通过回调函数(常用)"></a>2.3.2 通过回调函数(常用)</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Program &#123;</span><br><span class="line">	static void Test()&#123;</span><br><span class="line">	...</span><br><span class="line">	&#125;</span><br><span class="line">	static void Main(string []args)&#123;</span><br><span class="line">	Action a = Test;</span><br><span class="line">	IAsyncResult ar = a.BeginInvoke(OnCallBack, a);	//倒数第二个参数是回调函数，线程结束时执行；最后一个参数是回调函数的参数</span><br><span class="line">    //定义回调函数</span><br><span class="line">    static void OnCallBack(IAsyncResult ar)&#123;</span><br><span class="line">    Action a = ar.AsyncState as Action;//ar.AsyncState即为参数a的object类型</span><br><span class="line">    Console.WriteLine(&quot;线程结束&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4-其他"><a href="#2-4-其他" class="headerlink" title="2.4 其他"></a>2.4 其他</h3><h4 id="2-4-1-前台线程与后台线程"><a href="#2-4-1-前台线程与后台线程" class="headerlink" title="2.4.1 前台线程与后台线程"></a>2.4.1 前台线程与后台线程</h4><p>当前台线程还在运行，主线程（main方法）结束时，进程仍不会结束，知道完成所有前台线程。当只有后台线程还在运行，主线程（main方法）结束时，进程结束。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Thread t = new Thread(Test);</span><br><span class="line">t.IsBackground = true; //设置为后台线程</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-2-线程优先级"><a href="#2-4-2-线程优先级" class="headerlink" title="2.4.2 线程优先级"></a>2.4.2 线程优先级</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Thread t = new Thread(Test);</span><br><span class="line">t.Priority = Highest; //可以赋Highest,AboveNormal,BelowNormal,Lowest</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-3-线程的状态"><a href="#2-4-3-线程的状态" class="headerlink" title="2.4.3 线程的状态"></a>2.4.3 线程的状态</h4><h1 id="3-线程池（后台线程）"><a href="#3-线程池（后台线程）" class="headerlink" title="3 线程池（后台线程）"></a>3 线程池（后台线程）</h1><p>不能设置前后台线程以及优先级，一般用于时间较短的任务。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ThreadPool.QueueUserWorkItem(ThreadMethod);</span><br></pre></td></tr></table></figure>
+
+<h1 id="4Task和TaskFactory类"><a href="#4Task和TaskFactory类" class="headerlink" title="4Task和TaskFactory类"></a>4Task和TaskFactory类</h1>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/03/31/%E7%BA%BF%E7%A8%8B%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Socket笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/03/03/Socket%E7%AC%94%E8%AE%B0/">Socket笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2023/03/03/Socket%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2023-03-03T08:24:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <img src="/2023/03/03/Socket%E7%AC%94%E8%AE%B0/1.webp" alt="Socket流程" style="zoom: 50%;">
+
+<h1 id="1-服务器端"><a href="#1-服务器端" class="headerlink" title="1.服务器端"></a>1.服务器端</h1><h2 id="1-1-创建socket"><a href="#1-1-创建socket" class="headerlink" title="1.1.创建socket"></a>1.1.创建socket</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public Socket(AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType);//socket创建函数</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>AddressFamily addressFamily    地址族常用IPv4，即AddressFamily.InterNetwork</li>
+<li>SocketType socketType    套接字类型，UDP为SocketType.Dgram, TCP为SocketType.Stream</li>
+<li>ProtocolType protocolType    协议类型，常用为ProtocolType.UDP、ProtocolType.TCP</li>
+</ul>
+<h2 id="1-2-绑定客户端IP地址和端口号"><a href="#1-2-绑定客户端IP地址和端口号" class="headerlink" title="1.2.绑定客户端IP地址和端口号"></a>1.2.绑定客户端IP地址和端口号</h2><p><strong>任意IP的特定端口</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, 9999); //IPAddress.Any表示本机	IP</span><br><span class="line">serverSocker.Bind(endPoint);//绑定接收IP和端口号</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>IPAddress.Any    任意地址</li>
+<li>IPEndPoint endPoint    地址加端口号的实例</li>
+</ul>
+<p><strong>绑定特定IP和特定端口号</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">IpAdress ipa =IPAddress.Parse(&quot;192.168.31.110&quot;);</span><br><span class="line">EndPoint endPoint = new IPEndPoint(ipa, 9999);</span><br><span class="line">serverSocker.Bind(endPoint);//绑定接收IP和端口号</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-3-设置最大连接（监听）数"><a href="#1-3-设置最大连接（监听）数" class="headerlink" title="1.3.设置最大连接（监听）数"></a>1.3.设置最大连接（监听）数</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">serverSocker.Listen(10);//挂起连接队列的最大长度</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-4-暂停当前线程，等待客户端连接"><a href="#1-4-暂停当前线程，等待客户端连接" class="headerlink" title="1.4.暂停当前线程，等待客户端连接"></a>1.4.暂停当前线程，等待客户端连接</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Socket clientSocket = serverSocker.Accept();</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-5进行通信"><a href="#1-5进行通信" class="headerlink" title="1.5进行通信"></a>1.5进行通信</h2><p><strong>发送数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">string message = &quot;hello 欢迎你&quot;;</span><br><span class="line">byte[] data = Encoding.UTF8.GetBytes(message);</span><br><span class="line">clientSocket.Send(data); //发送数据给客户端</span><br></pre></td></tr></table></figure>
+
+<p><strong>接收数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">byte[] data = new byte[1024];</span><br><span class="line">int length = socketSocket.Receive(data);</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="2-客户端"><a href="#2-客户端" class="headerlink" title="2.客户端"></a>2.客户端</h1><h3 id="2-1-创建Socket"><a href="#2-1-创建Socket" class="headerlink" title="2.1.创建Socket"></a>2.1.创建Socket</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Socket clientSocket = new Socket(AdressFamily.InterNetwork, SocketType.Stream, ProtocolType.TCP);</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2请求连接"><a href="#2-2请求连接" class="headerlink" title="2.2请求连接"></a>2.2请求连接</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">IpAdress ipa =IPAddress.Parse(&quot;192.168.31.110&quot;);</span><br><span class="line">EndPoint point = new IPEndPoint(ipa, 9999);</span><br><span class="line">Socket serverSocket = clientSocket.Connect(point);</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-3进行通信"><a href="#2-3进行通信" class="headerlink" title="2.3进行通信"></a>2.3进行通信</h2><p><strong>发送数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">string message = &quot;hello 欢迎你&quot;;</span><br><span class="line">byte[] data = Encoding.UTF8.GetBytes(message);</span><br><span class="line">socketSocket.Send(data); //发送数据给客户端</span><br></pre></td></tr></table></figure>
+
+<p><strong>接收数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">byte[] data = new byte[1024];</span><br><span class="line">int length = clientSocket.Receive(data);</span><br><span class="line">string message = Encoding.UTF8.GetString(data, 0, length);</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/03/03/Socket%E7%AC%94%E8%AE%B0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-UGUI" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/03/02/UGUI/">UGUI</a>
+    </h1>
+  
+
+        
+        <a href="/2023/03/02/UGUI/" class="archive-article-date">
+  	<time datetime="2023-03-02T02:41:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Canvas画布"><a href="#1-Canvas画布" class="headerlink" title="1.Canvas画布"></a>1.Canvas画布</h1><h3 id="canvas组件"><a href="#canvas组件" class="headerlink" title="canvas组件:"></a>canvas组件:</h3><ul>
+<li>Render Mode :<ul>
+<li>Screen Space-Overby UI永远在相机最前面显示</li>
+<li>Screen Space-Camera 设置UI与相机的距离</li>
+<li>World Space 类似Transform，UI可以平移缩放</li>
+</ul>
+</li>
+</ul>
+<h3 id="Canvas-Scaler组件"><a href="#Canvas-Scaler组件" class="headerlink" title="Canvas Scaler组件:"></a>Canvas Scaler组件:</h3><ul>
+<li>UI Scale Mode:<ul>
+<li>Scale With Screen Size 根据屏幕大小缩放</li>
+</ul>
+</li>
+<li>Screen Match Mode<ul>
+<li>Match Width Or Height 根据屏幕大小的宽高进行缩放</li>
+</ul>
+</li>
+</ul>
+<h3 id="Graphic-Raycaster组件"><a href="#Graphic-Raycaster组件" class="headerlink" title="Graphic Raycaster组件:"></a>Graphic Raycaster组件:</h3><p>若无此组件，按钮等UI控件无法使用</p>
+<h1 id="2-Image图像"><a href="#2-Image图像" class="headerlink" title="2.Image图像"></a>2.Image图像</h1><h3 id="Rect-Transform组件"><a href="#Rect-Transform组件" class="headerlink" title="Rect Transform组件:"></a>Rect Transform组件:</h3><p>Rect Transform（矩形变换）是一种有别于原有的Transform组件的新的变换组件。在原来的场景中Transform组件表示的是一个点，而Rect Transform表示的是一个矩形。Rect Transform不仅拥有位置，旋转和缩放，还拥有高度和宽度，并且还有锚点和轴心点属性。</p>
+<p>​	<img src="/2023/03/02/UGUI/1.png"></p>
+<ul>
+<li>Pos X和Pos Y	当锚点聚合在一起时，表示以锚点为原点，自身相对于锚点的位置</li>
+<li>Left、Top、Right、Bottom     表示以自身四条边为参照的锚点组成的四边形四条边的相对位置</li>
+<li>Min、Max    分别表示锚点左下角和左上角的位置，父物体左下角为（0,0），右上角为（1，1）</li>
+<li>Pivot    支点</li>
+</ul>
+<h3 id="Image组件："><a href="#Image组件：" class="headerlink" title="Image组件："></a>Image组件：</h3><ul>
+<li>Source Image    Sprite格式图片</li>
+<li>Color    可以设置透明度</li>
+</ul>
+<h1 id="3-InputField输入框"><a href="#3-InputField输入框" class="headerlink" title="3.InputField输入框"></a>3.InputField输入框</h1><h3 id="3-1Placeholder"><a href="#3-1Placeholder" class="headerlink" title="3.1Placeholder"></a>3.1Placeholder</h3><p>预置的文字</p>
+<h3 id="3-2Text"><a href="#3-2Text" class="headerlink" title="3.2Text"></a>3.2Text</h3><p>场景中输入的文字</p>
+<h1 id="4-Toggle开关"><a href="#4-Toggle开关" class="headerlink" title="4.Toggle开关"></a>4.Toggle开关</h1><h3 id="Toggle组件"><a href="#Toggle组件" class="headerlink" title="Toggle组件:"></a>Toggle组件:</h3><ul>
+<li>Group开关组    可以设置单选</li>
+</ul>
+<h3 id="4-1BackGround"><a href="#4-1BackGround" class="headerlink" title="4.1BackGround"></a>4.1BackGround</h3><p>对钩框</p>
+<h3 id="4-2Checkmark"><a href="#4-2Checkmark" class="headerlink" title="4.2Checkmark"></a>4.2Checkmark</h3><p>对钩标志</p>
+<h3 id="4-3Label"><a href="#4-3Label" class="headerlink" title="4.3Label"></a>4.3Label</h3><p>预置文字</p>
+<h1 id="5-slider滑动条"><a href="#5-slider滑动条" class="headerlink" title="5.slider滑动条"></a>5.slider滑动条</h1><h3 id="Slider组件："><a href="#Slider组件：" class="headerlink" title="Slider组件："></a>Slider组件：</h3><ul>
+<li>Value    slider的值</li>
+</ul>
+<h3 id="5-1Background"><a href="#5-1Background" class="headerlink" title="5.1Background"></a>5.1Background</h3><p>把手右边的区域</p>
+<h3 id="5-2Fill-Area"><a href="#5-2Fill-Area" class="headerlink" title="5.2Fill Area"></a>5.2Fill Area</h3><p>把手左边的区域</p>
+<h3 id="5-3Handle-Slide-Area"><a href="#5-3Handle-Slide-Area" class="headerlink" title="5.3Handle Slide Area"></a>5.3Handle Slide Area</h3><p>把手</p>
+<h1 id="6Scroll-View滚动视图"><a href="#6Scroll-View滚动视图" class="headerlink" title="6Scroll View滚动视图"></a>6Scroll View滚动视图</h1><h3 id="6-1Content内容"><a href="#6-1Content内容" class="headerlink" title="6.1Content内容"></a>6.1Content内容</h3><h3 id="Horizontal-x2F-Vertical-x2F-Grid-Layout组件"><a href="#Horizontal-x2F-Vertical-x2F-Grid-Layout组件" class="headerlink" title="Horizontal&#x2F;Vertical&#x2F;Grid Layout组件"></a>Horizontal&#x2F;Vertical&#x2F;Grid Layout组件</h3><p>水平或垂直布局</p>
+<h3 id="Content-Size-Filter组件"><a href="#Content-Size-Filter组件" class="headerlink" title="Content Size Filter组件"></a>Content Size Filter组件</h3><p>根据content中的内容自动调整content大小</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/03/02/UGUI/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-MVC-框架编程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/02/27/MVC-%E6%A1%86%E6%9E%B6%E7%BC%96%E7%A8%8B/">MVC 框架编程</a>
+    </h1>
+  
+
+        
+        <a href="/2023/02/27/MVC-%E6%A1%86%E6%9E%B6%E7%BC%96%E7%A8%8B/" class="archive-article-date">
+  	<time datetime="2023-02-27T01:33:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Models数据模块"><a href="#Models数据模块" class="headerlink" title="Models数据模块"></a>Models数据模块</h1>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/02/27/MVC-%E6%A1%86%E6%9E%B6%E7%BC%96%E7%A8%8B/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-unity坐标系篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

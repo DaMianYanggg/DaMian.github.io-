@@ -6,15 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2023 | Hexo</title>
+  <title>UGUI | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2023/index.html">
+  <meta name="description" content="1.Canvas画布canvas组件: Render Mode : Screen Space-Overby UI永远在相机最前面显示 Screen Space-Camera 设置UI与相机的距离 World Space 类似Transform，UI可以平移缩放    Canvas Scaler组件: UI Scale Mode: Scale With Screen Size 根据屏幕大小缩放">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UGUI">
+<meta property="og:url" content="http://example.com/2023/03/02/UGUI/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1.Canvas画布canvas组件: Render Mode : Screen Space-Overby UI永远在相机最前面显示 Screen Space-Camera 设置UI与相机的距离 World Space 类似Transform，UI可以平移缩放    Canvas Scaler组件: UI Scale Mode: Scale With Screen Size 根据屏幕大小缩放">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2023/03/02/UGUI/1.png">
+<meta property="article:published_time" content="2023-03-02T02:41:16.000Z">
+<meta property="article:modified_time" content="2023-03-02T08:23:01.594Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/03/02/UGUI/1.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,238 +156,211 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-UGUI" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/03/31/%E7%BA%BF%E7%A8%8B%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2023-03-31T02:04:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-31</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/03/31/%E7%BA%BF%E7%A8%8B%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F/">常用线程创建方式</a>
+    <h1 class="article-title" itemprop="name">
+      UGUI
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/03/03/Socket%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2023-03-03T08:24:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/03/03/Socket%E7%AC%94%E8%AE%B0/">Socket笔记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/03/02/UGUI/" class="archive-article-date">
+        
+        <a href="/2023/03/02/UGUI/" class="archive-article-date">
   	<time datetime="2023-03-02T02:41:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-02</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/03/02/UGUI/">UGUI</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Canvas画布"><a href="#1-Canvas画布" class="headerlink" title="1.Canvas画布"></a>1.Canvas画布</h1><h3 id="canvas组件"><a href="#canvas组件" class="headerlink" title="canvas组件:"></a>canvas组件:</h3><ul>
+<li>Render Mode :<ul>
+<li>Screen Space-Overby UI永远在相机最前面显示</li>
+<li>Screen Space-Camera 设置UI与相机的距离</li>
+<li>World Space 类似Transform，UI可以平移缩放</li>
+</ul>
+</li>
+</ul>
+<h3 id="Canvas-Scaler组件"><a href="#Canvas-Scaler组件" class="headerlink" title="Canvas Scaler组件:"></a>Canvas Scaler组件:</h3><ul>
+<li>UI Scale Mode:<ul>
+<li>Scale With Screen Size 根据屏幕大小缩放</li>
+</ul>
+</li>
+<li>Screen Match Mode<ul>
+<li>Match Width Or Height 根据屏幕大小的宽高进行缩放</li>
+</ul>
+</li>
+</ul>
+<h3 id="Graphic-Raycaster组件"><a href="#Graphic-Raycaster组件" class="headerlink" title="Graphic Raycaster组件:"></a>Graphic Raycaster组件:</h3><p>若无此组件，按钮等UI控件无法使用</p>
+<h1 id="2-Image图像"><a href="#2-Image图像" class="headerlink" title="2.Image图像"></a>2.Image图像</h1><h3 id="Rect-Transform组件"><a href="#Rect-Transform组件" class="headerlink" title="Rect Transform组件:"></a>Rect Transform组件:</h3><p>Rect Transform（矩形变换）是一种有别于原有的Transform组件的新的变换组件。在原来的场景中Transform组件表示的是一个点，而Rect Transform表示的是一个矩形。Rect Transform不仅拥有位置，旋转和缩放，还拥有高度和宽度，并且还有锚点和轴心点属性。</p>
+<p>​	<img src="/2023/03/02/UGUI/1.png"></p>
+<ul>
+<li>Pos X和Pos Y	当锚点聚合在一起时，表示以锚点为原点，自身相对于锚点的位置</li>
+<li>Left、Top、Right、Bottom     表示以自身四条边为参照的锚点组成的四边形四条边的相对位置</li>
+<li>Min、Max    分别表示锚点左下角和左上角的位置，父物体左下角为（0,0），右上角为（1，1）</li>
+<li>Pivot    支点</li>
+</ul>
+<h3 id="Image组件："><a href="#Image组件：" class="headerlink" title="Image组件："></a>Image组件：</h3><ul>
+<li>Source Image    Sprite格式图片</li>
+<li>Color    可以设置透明度</li>
+</ul>
+<h1 id="3-InputField输入框"><a href="#3-InputField输入框" class="headerlink" title="3.InputField输入框"></a>3.InputField输入框</h1><h3 id="3-1Placeholder"><a href="#3-1Placeholder" class="headerlink" title="3.1Placeholder"></a>3.1Placeholder</h3><p>预置的文字</p>
+<h3 id="3-2Text"><a href="#3-2Text" class="headerlink" title="3.2Text"></a>3.2Text</h3><p>场景中输入的文字</p>
+<h1 id="4-Toggle开关"><a href="#4-Toggle开关" class="headerlink" title="4.Toggle开关"></a>4.Toggle开关</h1><h3 id="Toggle组件"><a href="#Toggle组件" class="headerlink" title="Toggle组件:"></a>Toggle组件:</h3><ul>
+<li>Group开关组    可以设置单选</li>
+</ul>
+<h3 id="4-1BackGround"><a href="#4-1BackGround" class="headerlink" title="4.1BackGround"></a>4.1BackGround</h3><p>对钩框</p>
+<h3 id="4-2Checkmark"><a href="#4-2Checkmark" class="headerlink" title="4.2Checkmark"></a>4.2Checkmark</h3><p>对钩标志</p>
+<h3 id="4-3Label"><a href="#4-3Label" class="headerlink" title="4.3Label"></a>4.3Label</h3><p>预置文字</p>
+<h1 id="5-slider滑动条"><a href="#5-slider滑动条" class="headerlink" title="5.slider滑动条"></a>5.slider滑动条</h1><h3 id="Slider组件："><a href="#Slider组件：" class="headerlink" title="Slider组件："></a>Slider组件：</h3><ul>
+<li>Value    slider的值</li>
+</ul>
+<h3 id="5-1Background"><a href="#5-1Background" class="headerlink" title="5.1Background"></a>5.1Background</h3><p>把手右边的区域</p>
+<h3 id="5-2Fill-Area"><a href="#5-2Fill-Area" class="headerlink" title="5.2Fill Area"></a>5.2Fill Area</h3><p>把手左边的区域</p>
+<h3 id="5-3Handle-Slide-Area"><a href="#5-3Handle-Slide-Area" class="headerlink" title="5.3Handle Slide Area"></a>5.3Handle Slide Area</h3><p>把手</p>
+<h1 id="6Scroll-View滚动视图"><a href="#6Scroll-View滚动视图" class="headerlink" title="6Scroll View滚动视图"></a>6Scroll View滚动视图</h1><h3 id="6-1Content内容"><a href="#6-1Content内容" class="headerlink" title="6.1Content内容"></a>6.1Content内容</h3><h3 id="Horizontal-x2F-Vertical-x2F-Grid-Layout组件"><a href="#Horizontal-x2F-Vertical-x2F-Grid-Layout组件" class="headerlink" title="Horizontal&#x2F;Vertical&#x2F;Grid Layout组件"></a>Horizontal&#x2F;Vertical&#x2F;Grid Layout组件</h3><p>水平或垂直布局</p>
+<h3 id="Content-Size-Filter组件"><a href="#Content-Size-Filter组件" class="headerlink" title="Content Size Filter组件"></a>Content Size Filter组件</h3><p>根据content中的内容自动调整content大小</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2023/03/02/UGUI/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/02/27/MVC-%E6%A1%86%E6%9E%B6%E7%BC%96%E7%A8%8B/" class="archive-article-date">
-  	<time datetime="2023-02-27T01:33:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-27</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2023/03/03/Socket%E7%AC%94%E8%AE%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Socket笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/02/27/MVC-%E6%A1%86%E6%9E%B6%E7%BC%96%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MVC 框架编程</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/02/27/MVC-%E6%A1%86%E6%9E%B6%E7%BC%96%E7%A8%8B/">MVC 框架编程</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/02/25/unity%E5%9D%90%E6%A0%87%E7%B3%BB%E7%AF%87/" class="archive-article-date">
-  	<time datetime="2023-02-25T02:09:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/02/25/unity%E5%9D%90%E6%A0%87%E7%B3%BB%E7%AF%87/">unity坐标系篇</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/02/24/Game3/" class="archive-article-date">
-  	<time datetime="2023-02-24T04:50:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/02/24/Game3/">Game3</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/02/24/C-%E5%87%BD%E6%95%B0-GUI/" class="archive-article-date">
-  	<time datetime="2023-02-24T03:18:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/02/24/C-%E5%87%BD%E6%95%B0-GUI/">C#函数-GUI</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/02/24/Game2/" class="archive-article-date">
-  	<time datetime="2023-02-24T03:05:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/02/24/Game2/">RTS游戏初体验-Game2</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -404,8 +383,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
